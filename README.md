@@ -24,6 +24,8 @@ def login():
     return render_template("login.html")
 
 
+
+
 @app.route('/login_post', methods=['post'])
 def login_post():
     username = request.form['textfield']
@@ -51,12 +53,20 @@ def login_post():
 
 
 
+
+
+
+
 @app.route('/approved_hospital')
 def approved_hospital():
     res="select * from hospital,login where hospital.hlid=login.lid and login.type='approved'"
     db=Db()
     qry=db.select(res)
     return render_template("admin/approved hospital.html",data=qry)
+
+
+
+
 
 @app.route('/pending_hospital')
 def pending_hospital():
@@ -65,6 +75,10 @@ def pending_hospital():
     qry=db.select(res)
     return render_template("admin/pending hospital.html",data=qry)
 
+
+
+
+
 @app.route('/rejected_hospital')
 def rejected_hospital():
     res="select * from hospital,login where hospital.hlid=login.lid and login.type='rejected'"
@@ -72,9 +86,18 @@ def rejected_hospital():
     qry=db.select(res)
     return render_template("admin/rejected hospital.html",data=qry)
 
+
+
+
+
+
 @app.route('/reply_complaint')
 def reply_complaint():
     return render_template("admin/reply to complaint.html")
+
+
+
+
 
 
 @app.route('/reply_compliant_post',methods=['post'])
@@ -84,6 +107,10 @@ def reply_compliant_post():
     db=Db()
     res=db.insert(qry)
     return render_template("admin/view complaint.html")
+
+
+
+
 
 
 @app.route('/view_complaint')
@@ -97,6 +124,10 @@ def view_complaint():
 
 #-------------------------DOCTOR
 
+
+
+
+
 @app.route('/booking')
 def booking():
     res="select * from booking,schedule,user where booking.slid=schedule.sid and booking.ulid=user.ulid"
@@ -104,13 +135,25 @@ def booking():
     qry=db.select(res)
     return render_template("doctor/booking.html",data=qry)
 
+
+
+
+
 @app.route('/edit_profile')
 def edit_profile():
     return render_template("doctor/edit profile.html")
 
+
+
+
+
 @app.route('/image_upload')
 def image_upload():
     return render_template("doctor/image upload.html")
+
+
+
+
 
 @app.route('/scheduling')
 def scheduling():
@@ -119,6 +162,10 @@ def scheduling():
     qry=db.select(res)
     return render_template("doctor/Scheduling.html",data=qry)
 
+
+
+
+
 @app.route('/view_profile')
 def view_profile():
     return render_template("doctor/view profile.html")
@@ -126,15 +173,30 @@ def view_profile():
 
 
 
+
+
+
 #-----------------------HOSPITAL
+
+
+
+
+
 
 @app.route('/home_hospital')
 def home_hospital():
     return render_template("hospital/hospital_homepage.html")
 
+
+
+
 @app.route('/add_dr')
 def add_dr():
     return render_template("hospital/add dr.html")
+
+
+
+
 
 @app.route('/add_dr_post',methods=['post'])
 def add_dr_post():
@@ -159,13 +221,29 @@ def add_dr_post():
     return "ok"
 
 
+
+
+
+
+
+
 @app.route("/add_dr_schedule")
 def add_dr_schedule():
     return render_template("hospital/add dr schedule.html")
 
+
+
+
+
+
+
 @app.route('/change_password')
 def change_password():
     return render_template("hospital/chnage password.html")
+
+
+
+
 
 @app.route('/dr_management')
 def dr_management():
@@ -174,21 +252,42 @@ def dr_management():
     qry=db.select(res)
     return render_template("hospital/dr managment.html",data=qry)
 
+
+
+
+
+
 @app.route('/edit_dr_details')
 def edit_dr_details():
     return render_template("hospital/edit dr details.html")
+
+
+
+
 
 @app.route('/edit_profile2')
 def edit_profile2():
     return render_template("hospital/edit profile.html")
 
+
+
+
+
 @app.route('/edit_schedule')
 def edit_schedule():
     return render_template("hospital/edit schedule.html")
 
+
+
+
+
 @app.route('/signup')
 def signup():
     return render_template("hospital/signup.html")
+
+
+
+
 
 @app.route('/signup_post',methods=['post'])
 def signup_post():
@@ -211,6 +310,10 @@ def signup_post():
 
 
 
+
+
+
+
 @app.route('/view_booking')
 def view_booking():
     res="select * from booking,schedule,user where booking.slid=schedule.sid"
@@ -218,12 +321,20 @@ def view_booking():
     qry=db.select(res)
     return render_template("hospital/view booking.html",data=qry)
 
+
+
+
+
 @app.route('/view_dr_schedule')
 def view_dr_schedule():
     res="select * from schedule,doctors where schedule.dlid=doctors.dlid"
     db=Db()
     qry=db.select(res)
     return render_template("hospital/view dr schedule.html",data=qry)
+
+
+
+
 
 @app.route('/view_drs')
 def view_drs():
@@ -239,7 +350,14 @@ def view_profile3():
 
 
 
+
+
+
+
+
 #------------------------------USER
+
+
 
 @app.route('/booking_history')
 def booking_history():
@@ -248,21 +366,40 @@ def booking_history():
     qry=db.select(res)
     return render_template("user/booking history.html",data=qry)
 
+
+
+
+
 @app.route('/change_password2')
 def change_password2():
     return render_template("user/chnage password.html")
+
+
+
+
 
 @app.route('/complaint')
 def complaint():
     return render_template("user/complainnt.html")
 
+
+
+
 @app.route('/edit_profile4')
 def edit_profile4():
     return render_template("user/edit profile.html")
 
+
+
+
+
 @app.route('/image_upload2')
 def image_upload2():
     return render_template("user/image upload.html")
+
+
+
+
 
 
 @app.route('/image_upload2_post',methods=['post'])
@@ -302,9 +439,16 @@ def image_upload2_post():
     return render_template("/image1.html",)
 
 
+
+
+
+
 @app.route('/signup2')
 def signup2():
     return render_template("user/Signup.html")
+
+
+
 
 @app.route('/view_doctors')
 def view_doctors():
@@ -313,6 +457,11 @@ def view_doctors():
     qry=db.select(res)
     return render_template("user/view doctor.html",data=qry)
 
+
+
+
+
+
 @app.route('/view_hospital')
 def view_hospital():
     res="select * from hospital"
@@ -320,9 +469,19 @@ def view_hospital():
     qry=db.select(res)
     return render_template("user/View hospital.html",data=qry)
 
+
+
+
+
+
 @app.route('/view_profile4')
 def view_profile4():
     return render_template("user/view profile.html")
+
+
+
+
+
 
 @app.route('/view_reply')
 def view_reply():
@@ -333,11 +492,17 @@ def view_reply():
 
 
 
+
+
 @app.route('/view_scheduling2')
 def view_scheduling2():
     res="select * from schedule"
     db=Db()
     qry=db.select(res)
     return render_template("user/view scheduling.html",data=qry)
+    
+    
+    
+    
 if __name__ == '__main__':
     app.run(debug=True,port=1234)
